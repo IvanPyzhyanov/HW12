@@ -20,4 +20,9 @@ def main_page():
 def candid_page(code):
      return render_template("candidate.html", candid=candidates, id=code)
 
+#making page with candidate`s list
+@app.route("/list/")
+def list_page():
+    return render_template("list.html", candid=candidates)
+
 app.run()
