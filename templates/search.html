@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home work #12</title>
+</head>
+<body>
+<h2>Found candidates:</h2>
+{% for name in names %}
+    {% for candidate in candid %}
+        {% if name == candidate.name %}
+            <p><a href="/candidate/{{ candidate.id }}">{{ candidate.name }}</a></p>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+</body>
+</html>
