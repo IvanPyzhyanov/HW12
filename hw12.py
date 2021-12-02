@@ -15,8 +15,9 @@ app = Flask(__name__)
 def main_page():
     return render_template("main.html", set=settings)
 
-# @app.route("/")
-# def main_page():
-#     return render_template("main.html", set=settings)
+#making page with info about candidate by chose id
+@app.route("/candidate/<int:code>")
+def candid_page(code):
+     return render_template("candidate.html", candid=candidates, id=code)
 
 app.run()

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home work #12</title>
+</head>
+<body>
+{% for candidate in candid %}
+    {% if candidate.id == id %}
+    <h1>{{ candidate.name }}</h1>
+    <p>Позиция кандидата: {{ candidate.position }}</p>
+    <img src="{{ candidate.picture }}" width=200/>
+    <p>Навыки кандидата: {{ candidate.skills }}</p>
+    {% endif %}
+{% endfor %}
+
+</body>
+</html>
