@@ -30,8 +30,6 @@ names_list = []
 for i in candidates:
     names_list.append(i["name"])
 
-print(settings["case-sensitive"])
-
 #making page for searching candidates by their names or just by letters in names (also we will use or not the case-sensitivity which depends on set in settings)
 @app.route("/search/")
 def search_page():
@@ -42,12 +40,21 @@ def search_page():
         name_match = [name for name in names_list if s.lower() in name.lower()]
     else:
         name_match = [name for name in names_list if s in name]
-        return name_match
     if len(name_match) == 0:
         return "No candidates in list with entered name. Try another one."
     else:
         return render_template("search.html", names=name_match, candid=candidates)
 
 
+#making route for searching candidates by their skills (found candidates list will show us limited number of candidates. This limit set by settings.)
+@app.route("/skill/<skill>")
+def skill_page(skill):
+    skill_match = []
+    for candidate in candidates:
+        if skill.lower() in candidate["skills"].lower():
+            skill_match.append(candidate["name"])
+            if len(skill_match) == settings["limit"]:
+                 return render_template("search.html", names=skill_match, candid=candidates)
+    return render_template("search.html", names=skill_match, candid=candidates)
 
 app.run()
